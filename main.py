@@ -13,6 +13,7 @@ import urllib
 load_dotenv()
 
 pokemon_image = ""
+seenPokemon = json.loads(requests.get("http://localhost:3005").text)["data"]
 
 def compare_images(img_path, img_path_2):
     req = urllib.request.urlopen(Request(url=img_path, headers={'User-Agent': 'Mozilla/5.0'}))
@@ -26,9 +27,9 @@ def compare_images(img_path, img_path_2):
     return result
 
 
-bot = commands.Bot(command_prefix='>', self_bot=True)
+bot = commands.Bot(command_prefix="None", self_bot=True)
 bot_spam_1 = commands.Bot(command_prefix='.', self_bot=True)
-bot_spam_2 = commands.Bot(command_prefix=".", self_bot=True)
+bot_spam_2 = commands.Bot(command_prefix="None", self_bot=True)
 
 # ------------ BOT LOG ------------
 
@@ -42,52 +43,37 @@ async def on_ready():
 
 # ------------ BOT ACTIVITY SPAM EVENT ------------
 
-CHANNEL_TOKEN = int(os.getenv("DISCORD_ACTIVE_CHANNEL_ID"))
-
 bots = []
 bots.append(bot_spam_1)
 bots.append(bot_spam_2)
 
-start = False
-
-use_bot = 1
-
-@bot_spam_1.event
-async def on_message(message):
-    global use_bot
-    if start:
-        if use_bot == 1:
-            await bot_spam_1.get_channel(CHANNEL_TOKEN).send("hi")
-        elif use_bot == 2:
-            await bot_spam_2.get_channel(CHANNEL_TOKEN).send("hi")
-        use_bot = 1 if use_bot == 2 else 2
-        time.sleep(5)
-
-    await bot_spam_1.process_commands(message)
-    
-
 @bot_spam_1.command()
 async def start_spam(ctx):
-    global start
-    start = True
-    await ctx.send("Started spam")
-
-
+    use_bot = 1
+    while 1:
+        if use_bot == 1:
+            await ctx.send("Hello Spam Bot 2")
+            use_bot = 2
+        elif use_bot == 2:
+            await bot_spam_2.get_channel(ctx.channel.id).send("Hello Spam Bot 1")
+            use_bot = 1
+        time.sleep(5)
+        
 
 # ------------ BOT CATCHER EVENT ------------
 
 @bot.event
 async def on_message(message):
-    # Check if message is from pokemon bot
-    if f'{message.author.name}#{message.author.discriminator}' == "Pokémon#8738" or True:
-        if len(message.embeds):
-            seenPokemon = json.loads(requests.get("http://localhost:3005").text)["data"]
+    if f'{message.author.name}#{message.author.discriminator}' == "Pokémon#8738":
+        if len(message.embeds) and message.embeds[0].image.url:
+            given_img_url = message.embeds[0].image.url
             for pokemon in seenPokemon:
-                if compare_images(pokemon["imageUrl"], message.embeds[0].image.url):
-                    return await message.channel.send(f'p!c {pokemon["name"]}')
+                if compare_images(pokemon["imageUrl"], given_img_url):
+                    return await bot.get_channel(message.channel.id).send(f'p!c {pokemon["name"]}')
+            await bot.get_channel(message.channel.id).send("@here, A wild pokemon appeared!")
             global pokemon_image
-            pokemon_image = message.embeds[0].image.url
-        elif message.content.startswith("Congratulations"):
+            pokemon_image = given_img_url
+        elif message.content.startswith("Congratulations") and pokemon_image:
             spliced_words = message.content.split(" ")[8:]
             for word in spliced_words:
                 if "!" in word:
@@ -96,8 +82,6 @@ async def on_message(message):
                         "name": pokemon_name,
                         "imageUrl": pokemon_image
                     })
-
-    await bot.process_commands(message)
 
 loop = asyncio.get_event_loop()
 loop.create_task(bot.start(os.getenv("DISCORD_CATCHER")))
