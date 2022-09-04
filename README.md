@@ -27,4 +27,4 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 8. `python main.py`
 <br>
 
-> :warning: **This is against discord's TOS**: Would not reccomend using!
+> :warning: **This is against discord's TOS**: Use at your own risk!
