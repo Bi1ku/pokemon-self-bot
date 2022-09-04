@@ -1,5 +1,5 @@
 # Pokémon Self-Bot
-A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/669228505128501258)
+A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/669228505128501258) made using javascript (express.js) and python (discord.py)
 <br>
 ### Prerequisites
 
