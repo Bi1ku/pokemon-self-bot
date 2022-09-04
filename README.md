@@ -20,8 +20,11 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 1. `git clone https://github.com/Bi1ku/pokemon-self-bot.git`
 2. `cd pokemon-self-bot`
 3. `yarn`
-4. `yarn watch`
-5. `python main.py`
+4.  Create a postgres database to store pokémon images
+5.  Get the self-bots' tokens
+6.  Create a .env file in the root of the directory and add the environment variables (#4, #5)
+7. `yarn watch`
+8. `python main.py`
 <br>
 
 > :warning: **This is against discord's TOS**: Would not reccomend using!
