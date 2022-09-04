@@ -1,90 +1,35 @@
-# Node API Template
+# Pokémon Self-Bot
+A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/669228505128501258) made using javascript ([express.js](https://expressjs.com/)) along with postgres, prisma, etc. and python ([discord.py](https://github.com/dolfies/discord.py-self)) along with asyncio, urllib, request, etc.
+<br>
+### Prerequisites
 
-A boilerplate for any kind of API service projects.
+1. Make 3 discord bots, 2 for spamming, and 1 for catching.
+2. Have the following packages installed with pip:
+      - dotenv
+      - urllib
+      - discord.py-self
+      - opencv-python
+      - numpy
+      - requests
+      - json
+      - asyncio
+3. Have node.js installed on your machine
 
-> Note: This project contains a collection of libraries and technologies that we feel are the most convenient as a starting point for any API service project, therefore we are open to discussion to continuously improve this set of tools.
+### Setup
 
-**Features:**
-  - JavaScript **ES6** Babel Transpiling during hot reload!
-  - **MongoDB** cloud/local server connection.
-    - Example Models and Schemas
-  - Basic email and password based **JWT** authentication endpoints
-  - SMS verification code sent and verified via **Twilio**
-  - User avatar upload using **Amazon S3**
-  - Basic endpoint routes supporting modern HTTP2 methods.
-    - Controllers architecture
-  - Convenient set of helper utilities
-    - Pagination
-    - Error handler
-    - Response handler
-    - Sessions and Cookies
-    - Much more
+1. `git clone https://github.com/Bi1ku/pokemon-self-bot.git`
+2. `cd pokemon-self-bot`
+3. `yarn`
+4.  Create a postgres database to store pokémon images
+5.  Get the self-bots' tokens
+6.  Create a .env file in the root of the directory and add the environment variables (#4, #5)
+7. `yarn watch`
+8. `python main.py`
 
+### Running the bot
 
-## Table of Contents
+1. Add all three bots to a private server with the [Pokémon](https://top.gg/bot/669228505128501258) bot.
+2. Then simply log into the spam bot 1 account and type `.start_spam`
+<br>
 
-_Note: This is only a navigation guide for the specification, and does not define or mandate terms for any specification-compliant documents._
-
-- [Getting Started](#getting-started)
-- [Common Issues](#common-issues)
-
-## Getting Started
-
-#### Install Dependencies
-```
-npm install
-```
-
-#### Start Dev Server
-```
-npm run watch
-```
-
-## Usage
-
-**Routes:**
-- You may start adding new routes to the `/routes` folder.
-- All routes are imported into `app.js` for route prefixing.
-
-**Controllers:**
-- Controllers are where we recommend keeping the business logic.
-- We recommend keeping business logic and route logic separate.
-
-**Models:**
-- We use [Mongoose](https://mongoosejs.com/) as the Database ORM for MongoDB.
-- We keep all the model schemas and data structures within `/models`.
-
-**dev.env:**
-- This file will store all sensitive information and API keys.
-- Change the file name to `.env` and fill all API keys.
-
-## Common Issues
-If you run into Babel 7.0.0 version not compatible error, simply remove the `node_modules` folder and `package-lock.json` or `yarn.lock` whichever applies, then run:
-```
-npm install
-npm clean-install
-```
-
-and then it should straighten out your babel issue.
-
-## Todo List
-- Deployment scripts
-- Environment variable support
-- SQL support
-- Basic CRUD examples
-- Usage tutorial videos
-
-## Maintainer(s)
-
-- [mxdi9i7](https://github.com/mxdi9i7)
-- [ssysm](https://github.com/ssysm)
-- [chuxu200328](https://github.com/chuxu200328)
-
-## Contributing
-- All contributions are welcomed.
-- If you have a question or suggestion to make, here's a link to the issues section: [Issues](https://github.com/mxdi9i7/node-api-template/issues)
-- Please reach out to the maintainers first if you want to work on a PR.
-
-## License
-
-[MIT](./LICENSE) Open Source License
+> :warning: **This is against discord's TOS**: Use at your own risk!
