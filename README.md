@@ -22,5 +22,6 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 3. `yarn`
 4. `yarn watch`
 5. `python main.py`
-<br>
+
+
 > :warning: **This is against discord's TOS**: Would not reccomend using!
