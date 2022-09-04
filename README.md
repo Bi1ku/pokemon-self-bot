@@ -25,6 +25,11 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 6.  Create a .env file in the root of the directory and add the environment variables (#4, #5)
 7. `yarn watch`
 8. `python main.py`
+
+### Running the bot
+
+1. Add all three bots to a private server with the [Pokémon](https://top.gg/bot/669228505128501258) bot.
+2. Then simply log into the spam bot 1 account and type `.start_spam`
 <br>
 
 > :warning: **This is against discord's TOS**: Use at your own risk!
