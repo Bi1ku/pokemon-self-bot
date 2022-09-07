@@ -1,4 +1,4 @@
-# Pokémon Self-Bot
+# 💥 Pokémon Self-Bot 🚀
 
 A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/669228505128501258) made using javascript ([express.js](https://expressjs.com/)) along with postgres, prisma, etc. and python ([discord.py](https://github.com/dolfies/discord.py-self)) along with asyncio, urllib, request, etc.
 <br>
