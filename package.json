@@ -5,7 +5,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "node ./src/app.js",
-		"watch": "nodemon ./src/app.js"
+		"watch": "nodemon ./src/app.js",
+		"run-bot": "python3 main.py"
 	},
 	"dependencies": {
 		"@babel/cli": "^7.8.4",
