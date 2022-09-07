@@ -29,7 +29,6 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 7. `yarn watch`
 8. `yarn run-bot`
 
-**Successful terminal setup response:**
 <img width="986" alt="Screen Shot 2022-09-07 at 2 10 59 PM" src="https://user-images.githubusercontent.com/85064868/188948896-0937b792-fda5-4480-89e3-1d3a7cf9091c.png">
 
 ### Running the bot
