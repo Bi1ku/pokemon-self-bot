@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from discord.ext import commands
+from urllib.request import Request
 import os
 import cv2
 import numpy as np
@@ -7,7 +8,6 @@ import requests
 import json
 import time
 import asyncio
-from urllib.request import Request
 import urllib
 
 load_dotenv()
@@ -39,6 +39,13 @@ bot_spam_2 = commands.Bot(command_prefix="None", self_bot=True)
 async def on_ready():
     print("Bot is ready")
 
+# ------------ BOT ERROR COG ------------
+
+bot.load_extension('cogs.error_handling')
+bot_spam_1.load_extension(f'cogs.error_handling')
+bot_spam_2.load_extension(f'cogs.error_handling')
+
+
 # ------------ BOT CATCHER EVENT ------------
 
 
@@ -67,7 +74,7 @@ async def on_message(message):
 # ------------ BOT ACTIVITY SPAM EVENT ------------
 
 
-@bot_spam_1.command()
+@ bot_spam_1.command()
 async def start_spam(ctx):
     use_bot = 1
     while 1:
