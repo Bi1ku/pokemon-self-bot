@@ -13,6 +13,10 @@ import urllib
 load_dotenv()
 seenPokemon = json.loads(requests.get("http://localhost:3005").text)["data"]
 
+bot = commands.Bot(command_prefix="None", self_bot=True)
+bot_spam_1 = commands.Bot(command_prefix='.', self_bot=True)
+bot_spam_2 = commands.Bot(command_prefix="None", self_bot=True)
+
 
 def fetch_image(image_url):
     req = urllib.request.urlopen(
@@ -24,11 +28,6 @@ def fetch_image(image_url):
 def compare_images(image, compared_image):
     difference = cv2.subtract(image, compared_image)
     return not np.any(difference)
-
-
-bot = commands.Bot(command_prefix="None", self_bot=True)
-bot_spam_1 = commands.Bot(command_prefix='.', self_bot=True)
-bot_spam_2 = commands.Bot(command_prefix="None", self_bot=True)
 
 # ------------ BOT LOG ------------
 
@@ -42,14 +41,14 @@ async def on_ready():
 # ------------ BOT ERROR COG ------------
 
 bot.load_extension('cogs.error_handling')
-bot_spam_1.load_extension(f'cogs.error_handling')
-bot_spam_2.load_extension(f'cogs.error_handling')
+bot_spam_1.load_extension('cogs.error_handling')
+bot_spam_2.load_extension('cogs.error_handling')
 
 
 # ------------ BOT CATCHER EVENT ------------
 
 
-@ bot.event
+@bot.event
 async def on_message(message):
     if f'{message.author.name}#{message.author.discriminator}' == "Pokémon#8738":
         if len(message.embeds) and message.embeds[0].title == "A wild pokémon has аppeаred!":
@@ -74,7 +73,7 @@ async def on_message(message):
 # ------------ BOT ACTIVITY SPAM EVENT ------------
 
 
-@ bot_spam_1.command()
+@bot_spam_1.command()
 async def start_spam(ctx):
     use_bot = 1
     while 1:
