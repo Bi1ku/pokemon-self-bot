@@ -11,7 +11,8 @@ import asyncio
 import urllib
 
 load_dotenv()
-seenPokemon = json.loads(requests.get("http://localhost:3005").text)["data"]
+SERVER_URL = os.getenv("SERVER_URL")
+seenPokemon = json.loads(requests.get(SERVER_URL).text)["data"]
 
 bot = commands.Bot(command_prefix="None", self_bot=True)
 bot_spam_1 = commands.Bot(command_prefix='.', self_bot=True)
@@ -65,7 +66,7 @@ async def on_message(message):
                 if "!" in word:
                     pokemon_name = " ".join(
                         spliced_words[:spliced_words.index(word) + 1]).replace("!", "")
-                    requests.post("http://localhost:3005", json={
+                    requests.post(SERVER_URL, json={
                         "name": pokemon_name,
                         "imageUrl": pokemon_image
                     })
