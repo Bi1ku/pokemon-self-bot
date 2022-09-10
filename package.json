@@ -5,7 +5,8 @@
 	"private": true,
 	"scripts": {
 		"start": "concurrently --kill-others \"yarn dev\" \"yarn run-bot\"",
-		"dev": "node ./src/app.js",
+		"dev": "concurrently --kill-others \"yarn dev\" \"yarn server\" \"yarn run-bot\"",
+		"server": "node ./src/app.js",
 		"watch": "nodemon ./src/app.js",
 		"run-bot": "python3 main.py"
 	},
