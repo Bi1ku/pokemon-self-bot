@@ -6,7 +6,7 @@ A pokémon self-bot for the popular discord bot, [Pokémon](https://top.gg/bot/6
 ### Prerequisites
 
 1. Make 3 discord bots, 2 for spamming, and 1 for catching.
-2. Have the following packages installed with pip:
+2. Have the following packages installed with pip (or install packages using `pip install .` within the project directory):
    - dotenv
    - urllib
    - discord.py-self
