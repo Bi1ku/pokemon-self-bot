@@ -11,6 +11,7 @@
 		"run-bot": "python3 main.py",
 		"studio": "prisma studio",
 		"migrate": "prisma migrate dev",
+		"push": "prisma db push",
 		"generate": "prisma generate"
 	},
 	"dependencies": {
