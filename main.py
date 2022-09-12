@@ -75,16 +75,6 @@ async def on_message(message):
 # ------------ BOT ACTIVITY SPAM EVENT ------------
 
 
-@bot_spam_1.event
-async def on_message(message):
-    if message.content == ".start_spam":
-        global spam_task
-        spam_task = asyncio.ensure_future(spamming(True, message.channel.id))
-    if message.content == ".stop_spam":
-        spam_task.cancel()
-        await message.channel.send("Stopped Spamming")
-
-
 async def spamming(start, channel_id=None):
     use_bot = 1
     while start:
@@ -95,6 +85,17 @@ async def spamming(start, channel_id=None):
             await bot_spam_2.get_channel(channel_id).send("Hello Spam Bot 1")
             use_bot = 1
         time.sleep(5)
+
+
+@bot_spam_1.event
+async def on_message(message):
+    if message.content == ".start_spam":
+        global spam_task
+        spam_task = asyncio.ensure_future(spamming(True, message.channel.id))
+    if message.content == ".stop_spam":
+        spam_task.cancel()
+        await message.channel.send("Stopped Spamming")
+
 
 # ------------ MULTIPLE DISCORD BOT ASYNCIO EVENT LOOP ------------
 
