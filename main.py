@@ -13,6 +13,7 @@ import urllib
 load_dotenv()
 SERVER_URL = os.getenv("SERVER_URL")
 seenPokemon = json.loads(requests.get(SERVER_URL).text)["data"]
+loop = asyncio.get_event_loop()
 
 bot = commands.Bot(command_prefix="None", self_bot=True)
 bot_spam_1 = commands.Bot(command_prefix='.', self_bot=True)
@@ -74,20 +75,28 @@ async def on_message(message):
 # ------------ BOT ACTIVITY SPAM EVENT ------------
 
 
-@bot_spam_1.command()
-async def start_spam(ctx):
+@bot_spam_1.event
+async def on_message(message):
+    if message.content == ".start_spam":
+        global spam_task
+        spam_task = asyncio.ensure_future(spamming(True, message.channel.id))
+    if message.content == ".stop_spam":
+        spam_task.cancel()
+        await message.channel.send("Stopped Spamming")
+
+
+async def spamming(start, channel_id=None):
     use_bot = 1
-    while 1:
+    while start:
         if use_bot == 1:
-            await ctx.send("Hello Spam Bot 2")
+            await bot_spam_1.get_channel(channel_id).send("Hello Spam Bot 2")
             use_bot = 2
         elif use_bot == 2:
-            await bot_spam_2.get_channel(ctx.channel.id).send("Hello Spam Bot 1")
+            await bot_spam_2.get_channel(channel_id).send("Hello Spam Bot 1")
             use_bot = 1
         time.sleep(5)
 
 # ------------ MULTIPLE DISCORD BOT ASYNCIO EVENT LOOP ------------
 
-loop = asyncio.get_event_loop()
 loop.run_until_complete(asyncio.gather(loop.create_task(
     bot.start(os.getenv("DISCORD_CATCHER"))), loop.create_task(bot_spam_1.start(os.getenv("DISCORD_SPAMMER_1"))), loop.create_task(bot_spam_2.start(os.getenv("DISCORD_SPAMMER_2")))))
